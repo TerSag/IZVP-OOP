@@ -1,1 +1,1 @@
-# WinFormsApp1
+## Repo for practical work on IZVP and OOP
