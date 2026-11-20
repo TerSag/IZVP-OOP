@@ -34,24 +34,18 @@ namespace TaskManagerApp
             StatusTextBlock.Text = $"Додано нове завдання: «{taskText}»";
         }
 
-        private void CompleteButton_Click(object sender, RoutedEventArgs e)
+        private void TaskCard_ToggleCompleteRequested(object? sender, TaskItem task)
         {
-            if (sender is Button button && button.Tag is TaskItem task)
-            {
-                task.IsCompleted = !task.IsCompleted;
-                UpdateUncompletedCounter();
-                StatusTextBlock.Text = $"Статус завдання змінено на: {task.StatusText}";
-            }
+            task.IsCompleted = !task.IsCompleted;
+            UpdateUncompletedCounter();
+            StatusTextBlock.Text = $"Статус завдання «{task.Title}» змінено на: {task.StatusText}";
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private void TaskCard_DeleteRequested(object? sender, TaskItem task)
         {
-            if (sender is Button button && button.Tag is TaskItem task)
-            {
-                Tasks.Remove(task);
-                UpdateUncompletedCounter();
-                StatusTextBlock.Text = "Завдання успішно видалено";
-            }
+            Tasks.Remove(task);
+            UpdateUncompletedCounter();
+            StatusTextBlock.Text = $"Завдання «{task.Title}» видалено";
         }
 
         private void UpdateUncompletedCounter()

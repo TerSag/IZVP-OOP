@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:TaskManagerApp"
+             x:Class="TaskManagerApp.TaskCard">
+	<Border BorderBrush="#CBD5E1"
+            BorderThickness="1"
+            CornerRadius="8"
+            Padding="12"
+            Margin="0,4"
+            Background="#F8FAFC">
+		<Grid ColumnDefinitions="*, Auto, Auto" VerticalAlignment="Center">
+			<StackPanel Grid.Column="0" Spacing="4" VerticalAlignment="Center" Margin="0,0,12,0">
+				<TextBlock x:Name="TitleTextBlock"
+                           Text="Назва завдання"
+                           FontSize="15"
+                           FontWeight="SemiBold"
+                           Foreground="#0F172A"
+                           TextWrapping="Wrap"/>
+				<TextBlock x:Name="StatusBadgeTextBlock"
+                           Text="Статус: Не виконано"
+                           FontSize="12"
+                           Foreground="#B45309"/>
+			</StackPanel>
+
+			<local:TaskActionButton x:Name="CompleteActionBtn"
+                                    Grid.Column="1"
+                                    ButtonText="Виконано"
+                                    IsDanger="False"
+                                    Margin="0,0,8,0"
+                                    ActionClicked="CompleteActionBtn_ActionClicked"/>
+
+			<local:TaskActionButton x:Name="DeleteActionBtn"
+                                    Grid.Column="2"
+                                    ButtonText="Видалити"
+                                    IsDanger="True"
+                                    ActionClicked="DeleteActionBtn_ActionClicked"/>
+		</Grid>
+	</Border>
+</UserControl>

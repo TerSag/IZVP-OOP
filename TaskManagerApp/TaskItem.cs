@@ -22,10 +22,12 @@ namespace TaskManagerApp
                 _isCompleted = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(StatusText));
+                OnPropertyChanged(nameof(CompleteButtonLabel));
             }
         }
 
         public string StatusText => IsCompleted ? "Виконано" : "Не виконано";
+        public string CompleteButtonLabel => IsCompleted ? "Повернути" : "Виконано";
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

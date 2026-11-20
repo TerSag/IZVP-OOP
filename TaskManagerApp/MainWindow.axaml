@@ -3,27 +3,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="using:TaskManagerApp"
-        mc:Ignorable="d" d:DesignWidth="550" d:DesignHeight="500"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="520"
         x:Class="TaskManagerApp.MainWindow"
-        Title="Менеджер завдань (ПР15)"
-        Width="550" Height="500">
+        Title="Менеджер завдань (ПР16 — Компоненти Avalonia UI)"
+        Width="600" Height="520">
 
 	<Grid Margin="15" RowDefinitions="Auto, Auto, *, Auto, Auto">
 		<TextBlock Grid.Row="0" x:Name="CounterTextBlock" Text="Невиконаних завдань: 0" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
 
 		<StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
-			<TextBox x:Name="TaskInputBox" Width="380" Watermark="Введіть нове завдання..." />
+			<TextBox x:Name="TaskInputBox" Width="430" Watermark="Введіть нове завдання..." />
 			<Button x:Name="AddButton" Content="Додати" Width="120" Click="AddButton_Click" />
 		</StackPanel>
 
-		<ListBox x:Name="TasksListBox" Grid.Row="2" Margin="0,0,0,10">
+		<ListBox x:Name="TasksListBox" Grid.Row="2" Margin="0,0,0,10" Background="Transparent">
 			<ListBox.ItemTemplate>
 				<DataTemplate x:DataType="local:TaskItem">
-					<Grid ColumnDefinitions="*, Auto, Auto" Margin="5">
-						<TextBlock Text="{Binding Title}" VerticalAlignment="Center" TextWrapping="Wrap" />
-						<Button Grid.Column="1" Content="{Binding StatusText}" Click="CompleteButton_Click" Tag="{Binding}" Margin="5,0,5,0" />
-						<Button Grid.Column="2" Content="Видалити" Click="DeleteButton_Click" Tag="{Binding}" Background="#FF5252" Foreground="White" />
-					</Grid>
+					<local:TaskCard TaskTitle="{Binding Title}"
+                                    StatusText="{Binding StatusText}"
+                                    IsTaskCompleted="{Binding IsCompleted}"
+                                    CompleteButtonLabel="{Binding CompleteButtonLabel}"
+                                    ToggleCompleteRequested="TaskCard_ToggleCompleteRequested"
+                                    DeleteRequested="TaskCard_DeleteRequested" />
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
